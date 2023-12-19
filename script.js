@@ -120,25 +120,24 @@ function getPasswordOptions() {
   function getCharOptions() {
     var confirmLowerCase = confirm(`Would you like lowercase letters?`);
     if (confirmLowerCase === true) {
-      passwordArray.push(lowerCasedCharacters[getRandom((lowerCasedCharacters.length)-1)]);
+      passwordArray.push(lowerCasedCharacters[getRandom(lowerCasedCharacters.length-1)]);
       passwordArrayB.push.apply(passwordArrayB, lowerCasedCharacters);
     };
     var confirmUpperCase = confirm(`Would you like uppercase letters?`);
     if (confirmUpperCase === true) {
-      passwordArray.push(upperCasedCharacters[getRandom((upperCasedCharacters.length)-1)]);
+      passwordArray.push(upperCasedCharacters[getRandom(upperCasedCharacters.length-1)]);
       passwordArrayB.push.apply(passwordArrayB, upperCasedCharacters);
     };
     var confirmNumeric = confirm(`Would you like numbers?`);
     if (confirmNumeric === true) {
-      passwordArray.push(numericCharacters[getRandom((numericCharacters.length)-1)]);
+      passwordArray.push(numericCharacters[getRandom(numericCharacters.length-1)]);
       passwordArrayB.push.apply(passwordArrayB, numericCharacters);
     };
     var confirmSpecialChar = confirm(`Would you like special characters? (@%+\\/'!#$^?:,)}{][~-_.)`);
     if (confirmSpecialChar === true) {
-      passwordArray.push(specialCharacters[getRandom((specialCharacters.length)-1)]);
+      passwordArray.push(specialCharacters[getRandom(specialCharacters.length-1)]);
       passwordArrayB.push.apply(passwordArrayB, specialCharacters);
       };
-
 
     if (confirmLowerCase === false
       && confirmUpperCase === false
@@ -158,6 +157,7 @@ getCharOptions()
 // function to shuffle passwordArrayB to return a more random password
 function shuffle(array) {
   let currentI = array.length,  randomI;
+  console.log(currentI);
   while (currentI > 0) {
     randomI = Math.floor(Math.random() * currentI); // randomly select a remaining element
     currentI--;
@@ -173,12 +173,10 @@ function generatePassword() {
   getPasswordOptions();
   // no. of randomly selected characters from passwordArrayB needed = passwordLength-passwordArray.length
 for (let i=0; i=(passwordLength-(passwordArray.length)); i++) {
-  passwordArray.push(shuffle(passwordArrayB)[getRandom(i)]);
-  console.log(passwordArray);
+  passwordArray.push(shuffle(passwordArrayB[getRandom(passwordArrayB.length-1)]));
   }
   return passwordArray.join("");
 }
-//okay i know what the issue is - I haven't set the get random max to be within the range of passwordArrayB (to allow for duplicates if the array isn't big enough)
 
 
 
