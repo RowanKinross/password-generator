@@ -95,7 +95,6 @@ var upperCasedCharacters = [
 var passwordArray = []; // contains one, randomly generated, of each confirm-selected charset
 var passwordArrayB = []; // contains whole array from each confirm-selected charset
 var passwordLength = 0;
-// const generatedPassword = []; 
 
 
 
@@ -151,9 +150,8 @@ function getPasswordOptions() {
       alert(`Thank you, we are now generating your password...`)
     }
   }
-  getCharOptions()
+getCharOptions()
 }
-
 
 
 
@@ -176,25 +174,25 @@ function generatePassword() {
   // no. of randomly selected characters from passwordArrayB needed = passwordLength-passwordArray.length
 for (let i=0; i=(passwordLength-(passwordArray.length)); i++) {
   passwordArray.push(shuffle(passwordArrayB)[getRandom(i)]);
+  console.log(passwordArray);
   }
-  return shuffle(passwordArray).join("");
+  return passwordArray.join("");
 }
-//generatePassword()
-
+//okay i know what the issue is - I haven't set the get random max to be within the range of passwordArrayB (to allow for duplicates if the array isn't big enough)
 
 
 
 
 // print generated password to the html
-    //  Get references to the #generate element
-    var generateBtn = document.querySelector('#generate');
+//  Get references to the #generate element
+var generateBtn = document.querySelector('#generate');
 
-    //  Write password to the #password input
-    function writePassword() {
-      var password = generatePassword();
-      var passwordText = document.querySelector('#password');
-      
-      passwordText.value = password;
+//  Write password to the #password input
+function writePassword() {
+  var password = generatePassword();
+  var passwordText = document.querySelector('#password');
+  
+  passwordText.value = password;
     }
 
     //  Add event listener to generate button
