@@ -114,22 +114,12 @@ var upperCasedCharacters = [
 // Following variables need to be global
 var passwordArray = [];
 var passwordArrayB = [];
-
 // const generatedPassword = []; 
-// function to get random integers, then to get random characters
-// Function for getting a random element from an array
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
-}
 
-var getRandomLC = lowerCasedCharacters[getRandomInt((lowerCasedCharacters.length)-1)];
-console.log(getRandomLC);
-var getRandomUC = upperCasedCharacters[getRandomInt((upperCasedCharacters.length)-1)];
-console.log(getRandomUC);
-var getRandomNum = numericCharacters[getRandomInt((numericCharacters.length)-1)];
-console.log(getRandomNum);
-var getRandomSC = specialCharacters[getRandomInt((specialCharacters.length)-1)];
-console.log(getRandomSC);
+// Function for getting a random element from an array
+function getRandom(arr) {
+  return Math.floor(Math.random() * arr);
+}
 
 // Function to prompt user for password options
 function getPasswordOptions() {
@@ -143,28 +133,28 @@ function getPasswordOptions() {
   function getCharOptions() {
     var confirmLowerCase = confirm(`Would you like lowercase letters?`);
     if (confirmLowerCase === true) {
-      passwordArray.push(getRandomLC);
+      passwordArray.push(lowerCasedCharacters[getRandom((lowerCasedCharacters.length)-1)]);
       passwordArrayB.push.apply(passwordArrayB, lowerCasedCharacters);
       console.log(passwordArray);
       console.log(passwordArrayB);
     };
     var confirmUpperCase = confirm(`Would you like uppercase letters?`);
     if (confirmUpperCase === true) {
-      passwordArray.push(getRandomUC);
+      passwordArray.push(upperCasedCharacters[getRandom((upperCasedCharacters.length)-1)]);
       passwordArrayB.push.apply(passwordArrayB, upperCasedCharacters);
       console.log(passwordArray);
       console.log(passwordArrayB);
     };
     var confirmNumeric = confirm(`Would you like numbers?`);
     if (confirmNumeric === true) {
-      passwordArray.push(getRandomNum);
+      passwordArray.push(numericCharacters[getRandom((numericCharacters.length)-1)]);
       passwordArrayB.push.apply(passwordArrayB, numericCharacters);
       console.log(passwordArray);
       console.log(passwordArrayB)
     };
     var confirmSpecialChar = confirm(`Would you like special characters? (@%+\\/'!#$^?:,)}{][~-_.)`);
     if (confirmSpecialChar === true) {
-      passwordArray.push(getRandomSC);
+      passwordArray.push(specialCharacters[getRandom((specialCharacters.length)-1)]);
       passwordArrayB.push.apply(passwordArrayB, specialCharacters);
       console.log(passwordArray);
       console.log(passwordArrayB);
@@ -189,27 +179,10 @@ getPasswordOptions();
 
 
 
-// function arrayPush() {   
-//   if (getPasswordOptions.confirmLowerCase === true) {
-//   console.log("lower case is true")
-//   } else {
-//   console.log("confirm lower case is not true")
-//   }
-// }
-// arrayPush();
 
 
-// first get one character from each getCharOptions if true
-// function getPasswordArray() {
-//     if (getPasswordOptions.confirmLowercase === true) {
-//       passwordArray = passwordArray.push(lowerCasedCharacters[getRandomInt((lowerCasedCharacters.length)-1)]);
-//     } else {
-//       passwordArray = passwordArray;
-//     }
-//     console.log(passwordArray);
-// }
-// getPasswordArray();
-// }
+
+
 
 //  Function to generate password with user input
 // function generatePassword() {
