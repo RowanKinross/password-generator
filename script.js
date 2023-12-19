@@ -90,26 +90,6 @@ var upperCasedCharacters = [
 ];
 
 
-//Task:  Generate a password when the button is clicked
-  // 1. Present a series of prompts for password criteria
-      //! - Length of password: at least 8 characters but no more than 128.
-      //!prompt - how long would you like the password? (min 8 - max 128 characters)
-          //!if number/input not within this range alert: the number you typed was not within this range, please try again.
-      //! - Character types: Lowercase, Uppercase, Numeric, Special characters ($@%&*, etc)
-        //! confirm do you at least 1 want lowercase letter?
-        //! confirm do you at least 1 want uppercase letter?
-        //! confirm do you at least 1 want number?
-        //! confirm do you at least 1 want special character? (  @ % + \\ / ' ! # $ ^ ? : , ) } { ] [ ~ - _ .   )
-  //! 2. Code should validate for each input and at least one character type should be selected
-        //! alert:if you don't select any character types, we can't generate you a password. Try again.
-  // 3. Once prompts are answered then the password should be generated and displayed in an alert or written to the page
-        //! make a random number generator
-        //! if charset selected push 1 random character to password array and push whole set to a generator array
-        // repeat random number generator ( and use on generator array) to the value of passwordLength - passwordarray.length
-        //shuffle the array, then join - you should have your password
-
-
-
 
 // Following variables need to be global
 var passwordArray = []; // contains one, randomly generated, of each confirm-selected charset
@@ -117,10 +97,14 @@ var passwordArrayB = []; // contains whole array from each confirm-selected char
 var passwordLength = 0;
 // const generatedPassword = []; 
 
+
+
 // Function for getting a random element from an array
 function getRandom(arr) {
   return Math.floor(Math.random() * arr);
 }
+
+
 
 // Function to prompt user for password options
 function getPasswordOptions() {
@@ -179,34 +163,44 @@ getPasswordOptions();
 
 
 
+// function to shuffle passwordArrayB to return a more random password
+function shuffle(array) {
+  let currentI = array.length,  randomI;
+  while (currentI > 0) {
+    randomI = Math.floor(Math.random() * currentI); // randomly select a remaining element
+    currentI--;
+    [array[currentI], array[randomI]] = [array[randomI], array[currentI]]; // swap current with random
+  }
+  return array;
+}
 
 
 
 //  Function to generate password with user input
 function generatePassword() {
-console.log(passwordArray);
-console.log(passwordArrayB);
-
-// number of randomly selected characters from passwordArrayB needed = passwordLength-passwordArray.length
+  // no. of randomly selected characters from passwordArrayB needed = passwordLength-passwordArray.length
 for (let i=0; i=(passwordLength-(passwordArray.length)); i++) {
-  passwordArray.push(passwordArrayB[getRandom(i)]);
-}
-
-console.log(passwordArray);
-  // console.log(passwordArrayB);
+  passwordArray.push(shuffle(passwordArrayB)[getRandom(i)]);
+  }
+  return shuffle(passwordArray).join("");
 }
 generatePassword()
 
-//  Get references to the #generate element
-// var generateBtn = document.querySelector('#generate');
 
-//  Write password to the #password input
-// function writePassword() {
-//   var password = generatePassword();
-//   var passwordText = document.querySelector('#password');
-  
-//   passwordText.value = password;
-// }
 
-//  Add event listener to generate button
-// generateBtn.addEventListener('click', writePassword)
+
+
+// print generated password to the html
+    //  Get references to the #generate element
+    var generateBtn = document.querySelector('#generate');
+
+    //  Write password to the #password input
+    function writePassword() {
+      var password = generatePassword();
+      var passwordText = document.querySelector('#password');
+      
+      passwordText.value = password;
+    }
+
+    //  Add event listener to generate button
+    generateBtn.addEventListener('click', writePassword);
