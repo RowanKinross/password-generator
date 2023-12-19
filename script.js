@@ -108,6 +108,9 @@ function getRandom(arr) {
 
 // Function to prompt user for password options
 function getPasswordOptions() {
+  passwordArray = [];
+  passwordArrayB = [];
+  passwordLength = 0;
   passwordLength = parseInt(prompt('How long would you like your password? (min 8 - max 128 characters)'));
   if (passwordLength > 7 && passwordLength < 129) {
     alert(`You have chosen ${passwordLength} as your password length`)
@@ -120,29 +123,21 @@ function getPasswordOptions() {
     if (confirmLowerCase === true) {
       passwordArray.push(lowerCasedCharacters[getRandom((lowerCasedCharacters.length)-1)]);
       passwordArrayB.push.apply(passwordArrayB, lowerCasedCharacters);
-      // console.log(passwordArray);
-      // console.log(passwordArrayB);
     };
     var confirmUpperCase = confirm(`Would you like uppercase letters?`);
     if (confirmUpperCase === true) {
       passwordArray.push(upperCasedCharacters[getRandom((upperCasedCharacters.length)-1)]);
       passwordArrayB.push.apply(passwordArrayB, upperCasedCharacters);
-      // console.log(passwordArray);
-      // console.log(passwordArrayB);
     };
     var confirmNumeric = confirm(`Would you like numbers?`);
     if (confirmNumeric === true) {
       passwordArray.push(numericCharacters[getRandom((numericCharacters.length)-1)]);
       passwordArrayB.push.apply(passwordArrayB, numericCharacters);
-      // console.log(passwordArray);
-      // console.log(passwordArrayB)
     };
     var confirmSpecialChar = confirm(`Would you like special characters? (@%+\\/'!#$^?:,)}{][~-_.)`);
     if (confirmSpecialChar === true) {
       passwordArray.push(specialCharacters[getRandom((specialCharacters.length)-1)]);
       passwordArrayB.push.apply(passwordArrayB, specialCharacters);
-      // console.log(passwordArray);
-      // console.log(passwordArrayB);
       };
 
 
@@ -158,7 +153,6 @@ function getPasswordOptions() {
   }
   getCharOptions()
 }
-getPasswordOptions();
 
 
 
@@ -178,13 +172,14 @@ function shuffle(array) {
 
 //  Function to generate password with user input
 function generatePassword() {
+  getPasswordOptions();
   // no. of randomly selected characters from passwordArrayB needed = passwordLength-passwordArray.length
 for (let i=0; i=(passwordLength-(passwordArray.length)); i++) {
   passwordArray.push(shuffle(passwordArrayB)[getRandom(i)]);
   }
   return shuffle(passwordArray).join("");
 }
-generatePassword()
+//generatePassword()
 
 
 
