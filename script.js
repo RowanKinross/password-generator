@@ -1,4 +1,3 @@
-
 // Array of special characters to be included in password
 var specialCharacters = [
   '@',
@@ -114,7 +113,7 @@ function getPasswordOptions() {
   if (passwordLength > 7 && passwordLength < 129) {
     alert(`You have chosen ${passwordLength} as your password length`)
   } else {
-    alert(`input was not found within this range, please try again.`)
+    alert(`Input was not found within this range, please try again.`)
     getPasswordOptions()
   }
   function getCharOptions() {
@@ -143,7 +142,7 @@ function getPasswordOptions() {
       && confirmUpperCase === false
       && confirmNumeric === false
       && confirmSpecialChar === false) {
-        alert(`at least one character type must be selected`)
+        alert(`At least one character type must be selected`)
         getCharOptions()
     } else {
       alert(`Thank you, we are now generating your password...`)
@@ -157,7 +156,6 @@ getCharOptions()
 // function to shuffle passwordArrayB to return a more random password
 function shuffle(array) {
   let currentI = array.length,  randomI;
-  console.log(currentI);
   while (currentI > 0) {
     randomI = Math.floor(Math.random() * currentI); // randomly select a remaining element
     currentI--;
@@ -182,15 +180,14 @@ for (let i=0; i=(passwordLength-(passwordArray.length)); i++) {
 
 
 // print generated password to the html
-//  Get references to the #generate element
-var generateBtn = document.querySelector('#generate');
+    //  Get references to the #generate element
+    var generateBtn = document.querySelector('#generate');
 
-//  Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector('#password');
-  
-  passwordText.value = password;
+    //  Write password to the #password input
+    function writePassword() {
+      var password = generatePassword();
+      var passwordText = document.querySelector('#password');    
+      passwordText.value = password;
     }
 
     //  Add event listener to generate button
