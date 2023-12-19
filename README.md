@@ -10,8 +10,10 @@ https://rowankinross.github.io/password-generator/
 
 ## Visuals
 The following demo shows the appearance of the application and the process of generating a password:
-
+gif -
 ![password generator demo](./images/password-generator-deployed-gif.gif)
+
+screen-capture -
 ![password generator screen-capture](./images/password-generator-screencapture.png)
 
 ## Installation
