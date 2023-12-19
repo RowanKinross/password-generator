@@ -103,8 +103,8 @@ var upperCasedCharacters = [
   //! 2. Code should validate for each input and at least one character type should be selected
         //! alert:if you don't select any character types, we can't generate you a password. Try again.
   // 3. Once prompts are answered then the password should be generated and displayed in an alert or written to the page
-        // make a random number generator
-        // if charset selected push 1 random character to password array and push whole set to a generator array
+        //! make a random number generator
+        //! if charset selected push 1 random character to password array and push whole set to a generator array
         // repeat random number generator ( and use on generator array) to the value of passwordLength - passwordarray.length
         //shuffle the array, then join - you should have your password
 
@@ -112,8 +112,9 @@ var upperCasedCharacters = [
 
 
 // Following variables need to be global
-var passwordArray = [];
-var passwordArrayB = [];
+var passwordArray = []; // contains one, randomly generated, of each confirm-selected charset
+var passwordArrayB = []; // contains whole array from each confirm-selected charset
+var passwordLength = 0;
 // const generatedPassword = []; 
 
 // Function for getting a random element from an array
@@ -123,7 +124,7 @@ function getRandom(arr) {
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-  var passwordLength = parseInt(prompt('How long would you like your password? (min 8 - max 128 characters)'));
+  passwordLength = parseInt(prompt('How long would you like your password? (min 8 - max 128 characters)'));
   if (passwordLength > 7 && passwordLength < 129) {
     alert(`You have chosen ${passwordLength} as your password length`)
   } else {
@@ -135,29 +136,29 @@ function getPasswordOptions() {
     if (confirmLowerCase === true) {
       passwordArray.push(lowerCasedCharacters[getRandom((lowerCasedCharacters.length)-1)]);
       passwordArrayB.push.apply(passwordArrayB, lowerCasedCharacters);
-      console.log(passwordArray);
-      console.log(passwordArrayB);
+      // console.log(passwordArray);
+      // console.log(passwordArrayB);
     };
     var confirmUpperCase = confirm(`Would you like uppercase letters?`);
     if (confirmUpperCase === true) {
       passwordArray.push(upperCasedCharacters[getRandom((upperCasedCharacters.length)-1)]);
       passwordArrayB.push.apply(passwordArrayB, upperCasedCharacters);
-      console.log(passwordArray);
-      console.log(passwordArrayB);
+      // console.log(passwordArray);
+      // console.log(passwordArrayB);
     };
     var confirmNumeric = confirm(`Would you like numbers?`);
     if (confirmNumeric === true) {
       passwordArray.push(numericCharacters[getRandom((numericCharacters.length)-1)]);
       passwordArrayB.push.apply(passwordArrayB, numericCharacters);
-      console.log(passwordArray);
-      console.log(passwordArrayB)
+      // console.log(passwordArray);
+      // console.log(passwordArrayB)
     };
     var confirmSpecialChar = confirm(`Would you like special characters? (@%+\\/'!#$^?:,)}{][~-_.)`);
     if (confirmSpecialChar === true) {
       passwordArray.push(specialCharacters[getRandom((specialCharacters.length)-1)]);
       passwordArrayB.push.apply(passwordArrayB, specialCharacters);
-      console.log(passwordArray);
-      console.log(passwordArrayB);
+      // console.log(passwordArray);
+      // console.log(passwordArrayB);
       };
 
 
@@ -181,13 +182,20 @@ getPasswordOptions();
 
 
 
-
-
-
 //  Function to generate password with user input
-// function generatePassword() {
+function generatePassword() {
+console.log(passwordArray);
+console.log(passwordArrayB);
 
-// }
+// number of randomly selected characters from passwordArrayB needed = passwordLength-passwordArray.length
+for (let i=0; i=(passwordLength-(passwordArray.length)); i++) {
+  passwordArray.push(passwordArrayB[getRandom(i)]);
+}
+
+console.log(passwordArray);
+  // console.log(passwordArrayB);
+}
+generatePassword()
 
 //  Get references to the #generate element
 // var generateBtn = document.querySelector('#generate');
